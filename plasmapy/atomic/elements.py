@@ -9,12 +9,8 @@ import json
 import collections
 import pkgutil
 _Elements = json.loads(pkgutil.get_data('plasmapy', 'atomic/elements.json'))
-
 for element in _Elements:
-    _Elements[element]["mass"] *= u.u
-    if "half-life" in _Elements[element] and not isinstance(
-            _Elements[element]["half-life"], str):
-        _Elements[element]["half-life"] *= u.s
+    _Elements[element]["atomic mass"] *= u.u
 
 _PeriodicTable = collections.namedtuple(
     "periodic_table", ['group', 'category', 'block', 'period']
