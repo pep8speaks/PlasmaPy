@@ -10,7 +10,8 @@ import collections
 import pkgutil
 _Elements = json.loads(pkgutil.get_data('plasmapy', 'atomic/elements.json'))
 for element in _Elements:
-    _Elements[element]["atomic mass"] *= u.u
+    if "atomic mass" in _Elements[element]:
+        _Elements[element]["atomic mass"] *= u.u
 
 _PeriodicTable = collections.namedtuple(
     "periodic_table", ['group', 'category', 'block', 'period']
