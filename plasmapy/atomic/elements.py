@@ -6,11 +6,9 @@ The periodic tabla data is from: http://periodic.lanl.gov/index.shtml
 
 import astropy.units as u
 import json
-import os
 import collections
-
-with open(os.path.join(os.path.dirname(__file__), "elements.json")) as f:
-    _Elements = json.load(f)
+import pkgutil
+_Elements = json.loads(pkgutil.get_data('plasmapy', 'atomic/elements.json'))
 
 for element in _Elements:
     _Elements[element]["mass"] *= u.u

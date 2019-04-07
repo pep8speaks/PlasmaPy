@@ -5,11 +5,9 @@ neutrons.
 
 import astropy.units as u
 import json
-import os
 
-with open(os.path.join(os.path.dirname(__file__), "isotopes.json")) as f:
-    _Isotopes = json.load(f)
-
+import pkgutil
+_Isotopes = json.loads(pkgutil.get_data('plasmapy', 'atomic/isotopes.json'))
 for isotope in _Isotopes:
     _Isotopes[isotope]["mass"] *= u.u
     if "half-life" in _Isotopes[isotope] and not isinstance(
